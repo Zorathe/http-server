@@ -25,8 +25,13 @@ while True:
     request = client_connection.recv(1024).decode()
     print(request)
 
+    # Get the content of htdocs/index.html
+    fin = open('htdocs/index.html')
+    content = fin.read()
+    fin.close()
+
     # Send HTTP response
-    response = 'HTTP/1.0 200 OK\n\nHello World'
+    response = 'HTTP/1.0 200 OK\n\n' + content
     client_connection.sendall(response.encode())
     client_connection.close()
 
